@@ -7,7 +7,7 @@
 
 ###
 # Malaysia License Plate
-![Malaysia Car Plate](./plate.jpg)
+![Malaysia Car Plate](./data/plate.jpg)
 #### <p align='center'>Above is a common malaysia car plate</p>
 <br />
 
@@ -25,7 +25,7 @@
 <br />
 
 ### Commemorative Plates
-![Putrajaya Series Car Plate](./putrajaya.jpeg)
+![Putrajaya Series Car Plate](./data/putrajaya.jpeg)
 - Commemorative plates have specific alphabetical sequences which ignore the standard format
 - For example, Putrajaya series uses calisto italic font and start without following the standard format
 
