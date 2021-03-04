@@ -4,13 +4,8 @@ import random
 import logging
 
 class Generator():
-    def __init__(self, plate_type="single", total_plate=10, variant_plate=False ,state="Penang", alphabet_num=3, number_num=4):
-        self.plate_type = plate_type
-        self.state = state
-        self.number_count = number_num
-        self.alpha_count = alphabet_num
-        self.total_plate = total_plate
-        self.variant_plate = variant_plate
+    def __init__(self):
+        pass
 
     def getCharPath(self, alphabet, font):
         path = str(os.getcwd()) + '/data/{}/reversed/alphabets/{}.png'.format(font, alphabet)
@@ -47,22 +42,39 @@ class Generator():
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         return img
 
-
-    def generatePlates(self):
+    def generatePlates(self, plate_type="single", total_plate=10, variant_plate=False ,state="Penang", alphabet_num=3, number_num=4):
         # Import plate type
         plate_path = str(os.getcwd()) + '/data/backplate/'
-        if self.plate_type == "single":
+        if plate_type == "single":
             name = 'single_line_backplate.jpg'
             back_plate = self.readImage(plate_path+name)
-        elif self.plate_type == "double":
+        elif plate_type == "double":
             name = 'double_line_backplate.jpg'
             back_plate = self.readImage(plate_path+name)
         else:
             return logging.error("Please specify the plate type")
+        
+        # Loop for several times 
+        # for count in range(total_plate):
+
         # Generate random car plate
-        plate_number = self.getRandomPlate(self.state, self.alpha_count, self.number_count, self.variant_plate)
+        plate_number = self.getRandomPlate(state, alphabet_num, number_num, variant_plate)
+        print("Generating fake car plate for {}".format(plate_number))
+        # Import characters based on plate number
+
+        # Merge backplate and characters
+        print("Merging backplate and characters...")
         
+        # Show if want
+        print("Showing output")
+        # cv2.imshow("Generated plate", img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         
-        return (plate_number)
-    
+        # Save output
+        print("Fake car plate, {} is saved".format(plate_number))
+        # dest_path = str(os.getcwd()) + '/data/generated_plates/{}.jpg'.format(plate_number)
+        # cv2.imwrite(dest_path, img)
+        return
+         
     
