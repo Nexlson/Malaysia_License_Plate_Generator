@@ -1,7 +1,9 @@
 # Malaysia License Plate Generator
 ###
 ### This repository contains:
-- python scripts that can generate malaysia car plate for Automatic Car Plate Recognition training 
+- Generate malaysia car plate for Automatic Car Plate Recognition training
+- Create one line or two line car plate
+- Augmentation for different rotations and lightining
 <br />
 
 
@@ -29,6 +31,8 @@
 - Commemorative plates have specific alphabetical sequences which ignore the standard format
 - For example, Putrajaya series uses calisto italic font and start without following the standard format
 
+### Total number characters 
+#### There will be around 5 - 8 numbers for standard format 
 <br />
 
 
