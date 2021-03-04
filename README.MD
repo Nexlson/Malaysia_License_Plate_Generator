@@ -3,7 +3,6 @@
 ### This repository contains:
 - python scripts that can generate malaysia car plate for Automatic Car Plate Recognition training 
 <br />
-<br />
 
 
 ###
@@ -30,7 +29,6 @@
 - Commemorative plates have specific alphabetical sequences which ignore the standard format
 - For example, Putrajaya series uses calisto italic font and start without following the standard format
 
-<br />
 <br />
 
 
