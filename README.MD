@@ -36,14 +36,14 @@
 <br />
 
 # How to Use
+### Generate 5 fake car plate with default settings
 ```
     python3 main.py --total_plate 5
 ```
-### Generate 5 fake car plate with default settings
+### Display help instructions and default settings in console
 ```
     python3 main.py --help 
 ```
-### Display help instructions and default settings in console
 <br />
 
 # Results
