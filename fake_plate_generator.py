@@ -2,13 +2,11 @@ import cv2
 import os
 import random
 import logging
+import string
 
 class Generator():
-    def __init__(self):
-        pass
-
     def getCharPath(self, alphabet, font):
-        path = str(os.getcwd()) + '/data/{}/reversed/alphabets/{}.png'.format(font, alphabet)
+        path = str(os.getcwd()) + '/data/{}/reversed/characters/{}.png'.format(font, alphabet)
         return path
     
     def getRandomPlate(self, stateName, front_alpha_num, num_num, variant):
@@ -42,7 +40,7 @@ class Generator():
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         return img
 
-    def generatePlates(self, plate_type="single", total_plate=10, variant_plate=False ,state="Penang", alphabet_num=3, number_num=4):
+    def generatePlates(self, plate_type, total_plate, variant_plate ,state, alphabet_num, number_num, font_type, display):
         # Import plate type
         plate_path = str(os.getcwd()) + '/data/backplate/'
         if plate_type == "single":
@@ -55,26 +53,71 @@ class Generator():
             return logging.error("Please specify the plate type")
         
         # Loop for several times 
-        # for count in range(total_plate):
+        for count in range(total_plate):
+            # Generate random car plate
+            plate_number = self.getRandomPlate(state, alphabet_num, number_num, variant_plate)
+            print("Generating fake car plate for {}".format(plate_number))
+            # Import characters based on plate number
 
-        # Generate random car plate
-        plate_number = self.getRandomPlate(state, alphabet_num, number_num, variant_plate)
-        print("Generating fake car plate for {}".format(plate_number))
-        # Import characters based on plate number
+            # Merge backplate and characters
+            print("Merging backplate and characters...")
+            # Constant
+            # X and y starting 
+            y_offset=25
+            x_offset = 50
+            # Remaining space for characters
+            remaining_space = back_plate.shape[1] - (x_offset*2)
+            alphabetsString = string.ascii_uppercase
+            # Space remaining for font
+            per_space = int(remaining_space / len(plate_number))
+            # Y starting point for second row
+            remaining_space_y =  back_plate.shape[0] - (y_offset*2)
+            secondHalf = y_offset + int(remaining_space_y / 2)
+            
+            if plate_type == "single":
+                for alphabet in plate_number:
+                    charPath = self.getCharPath(alphabet, font_type)
+                    img = self.readImage(charPath)
+                    back_plate[y_offset:y_offset+img.shape[0], x_offset:x_offset+img.shape[1]] = img
+                    x_offset += per_space
+            elif plate_type == "double":
+                front_alpha = ''
+                back_num = ''
+                first_x_offset = second_x_offset = x_offset
+                first_x_offset = 100
+                second_x_offset = 50
+                for alphabet in plate_number:
+                    if alphabet in alphabetsString:
+                        front_alpha += alphabet
+                    else:
+                        back_num += alphabet
+                first_remaining_space = back_plate.shape[1] - (first_x_offset*2)
+                second_remaining_space = back_plate.shape[1] - (second_x_offset*2)
+                first_per_space = int(first_remaining_space / len(front_alpha))
+                second_per_space = int(second_remaining_space / len(back_num))
+                for alphabet in front_alpha:
+                    charPath = self.getCharPath(alphabet, font_type)
+                    img = self.readImage(charPath)
+                    back_plate[y_offset:y_offset+img.shape[0], first_x_offset:first_x_offset+img.shape[1]] = img
+                    first_x_offset += first_per_space
+                for alphabet in back_num:
+                    y_offset = secondHalf
+                    charPath = self.getCharPath(alphabet, font_type)
+                    img = self.readImage(charPath)
+                    back_plate[y_offset:y_offset+img.shape[0], second_x_offset:second_x_offset+img.shape[1]] = img
+                    second_x_offset += second_per_space
 
-        # Merge backplate and characters
-        print("Merging backplate and characters...")
-        
-        # Show if want
-        print("Showing output")
-        # cv2.imshow("Generated plate", img)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
-        
-        # Save output
-        print("Fake car plate, {} is saved".format(plate_number))
-        # dest_path = str(os.getcwd()) + '/data/generated_plates/{}.jpg'.format(plate_number)
-        # cv2.imwrite(dest_path, img)
+            # Show if want
+            if display:
+                print("Showing output")
+                cv2.imshow("Generated plate", back_plate)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+            
+            # Save output
+            print("Fake car plate, {} is saved".format(plate_number))
+            dest_path = str(os.getcwd()) + '/data/generated_plates/{}.jpg'.format(plate_number)
+            cv2.imwrite(dest_path, back_plate)
         return
          
     
