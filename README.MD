@@ -35,6 +35,24 @@
 #### There will be around 5 - 8 numbers for standard format 
 <br />
 
+# How to Use
+```
+    python3 main.py --total_plate 5
+```
+### Generate 5 fake car plate with default settings
+```
+    python3 main.py --help 
+```
+### Display help instructions and default settings in console
+<br />
+
+# Results
+## Here are the results of the generator
+### Single line
+![Fake Single Car Plate](./data/PBT8492.jpg)
+### Double line
+![Fake Double Car Plate](./data/PHP7644.jpg)
+<br />
 
 # Reference
 - https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Malaysia

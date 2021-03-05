@@ -1,5 +1,6 @@
 from fake_plate_generator import Generator
 import argparse
+import os
 
 '''
 Parameters for generators:
@@ -42,6 +43,11 @@ parser.add_argument("--font_type", type=str, default="Arial_Bold", help="The fon
 parser.add_argument("--display", type=bool, default=False, help="display result")
 args = parser.parse_args()
 
-# main
+# Main
+cwd = os.getcwd()
+destination = cwd + '/data/generated_plates'
+# Create directory if not exist
+if not os.path.exists(destination):
+    os.mkdir(destination)
 gen = Generator()
 gen.generatePlates(args.plate_type, args.total_plate, args.variant, args.state, args.alphabet_num, args.number_num, args.font_type, args.display)
