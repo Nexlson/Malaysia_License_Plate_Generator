@@ -12,7 +12,7 @@ Example:
 
 2. plate_type (string) = The type of plate
 Example: 
-    "single", "double"
+    "single", "double", "putrajaya
 
 3. variant_plate (boolean) = add a random alphabet at back
 

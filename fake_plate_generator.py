@@ -99,10 +99,10 @@ class Generator():
                 plate_type = "single"
                 for alphabet in remainChar:
                     charPath = self.getCharPath(alphabet, font_type, plate_type)
-                    print(charPath)
                     img = self.readImage(charPath)
                     back_plate[y_offset:y_offset+img.shape[0], x_offset:x_offset+img.shape[1]] = img
                     x_offset += img.shape[1] + 25
+                plate_type = "putrajaya"
 
             elif plate_type == "double":
                 front_alpha = ''
