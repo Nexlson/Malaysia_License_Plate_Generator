@@ -32,7 +32,7 @@ Example:
 
 # parser 
 parser = argparse.ArgumentParser()
-parser.add_argument("--plate_type", type=str, help="type of plate. Eg: 'single', 'double'", default="single")
+parser.add_argument("--plate_type", type=str, help="type of plate. Eg: 'single', 'double', 'putrajaya'", default="single")
 parser.add_argument("--total_plate", required=True, type=int, help="number of plate generated")
 parser.add_argument("--variant", type=bool, default=False, help="add a random alphabet at back")
 parser.add_argument("--state", type=str, default="Penang", help=

@@ -52,6 +52,9 @@
 ![Fake Single Car Plate](./data/PBT8492.jpg)
 ### Double line
 ![Fake Double Car Plate](./data/PHP7644.jpg)
+### Putrajaya
+![Fake Double Car Plate](./data/Putrajaya_4993.jpg)
+#### Putrajaya only support single line
 <br />
 
 # Reference
